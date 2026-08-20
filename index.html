@@ -3,502 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terrex en Movimiento | BogotaFitDeals</title>
 
-  <title>Adidas Terrex | Terrex en Movimiento</title>
+  <!-- Importación del componente model-viewer de Google -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-  <!-- Model Viewer -->
-  <script
-    type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
-  </script>
-
-  <!-- QR Code -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Fuentes tipográficas deportivas/urbanas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --negro: #000000;
-      --blanco: #ffffff;
-      --gris-claro: #f5f5f5;
-      --gris: #777777;
-      --gris-oscuro: #222222;
+      --bg-color: #0b0d0f;
+      --card-bg: #15181c;
+      --accent-red: #ff2a2a;
+      --accent-orange: #ff5500;
+      --text-white: #ffffff;
+      --text-gray: #a0a5ad;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--negro);
-      background: var(--blanco);
-      line-height: 1.5;
-    }
-
-    /* HEADER */
-
-    header {
-      background: var(--negro);
-      color: var(--blanco);
-      padding: 20px 5%;
+      background-color: var(--bg-color);
+      color: var(--text-white);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      min-height: 100vh;
+      padding-bottom: 40px;
     }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-
-    .header-text {
-      font-size: 0.9rem;
-      color: #cccccc;
-    }
-
-    /* HERO */
-
-    .hero {
+    /* Header & Logo */
+    header {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
       text-align: center;
-      padding: 55px 20px 30px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(11,13,15,0) 100%);
     }
 
-    .hero h1 {
-      font-size: clamp(2.3rem, 6vw, 4.5rem);
-      font-weight: 900;
-      letter-spacing: -2px;
+    .brand-tag {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-gray);
       text-transform: uppercase;
     }
 
-    .hero p {
-      margin-top: 12px;
-      color: var(--gris);
-      font-size: 1.1rem;
+    .hero-title {
+      margin-top: 5px;
     }
 
-    /* PRODUCTO */
-
-    main {
-      width: min(1200px, 92%);
-      margin: auto;
+    .terrex-text {
+      font-size: 42px;
+      font-style: italic;
+      font-weight: 900;
+      color: var(--accent-red);
+      line-height: 0.9;
+      text-shadow: 0 0 15px rgba(255, 42, 42, 0.4);
     }
 
-    .producto {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 50px;
-      align-items: center;
-      margin: 30px 0 70px;
+    .movimiento-text {
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
     }
 
-    /* VISOR 3D */
-
-    .visor {
+    /* Contenedor del Visor 3D / AR */
+    .ar-container {
+      width: 100%;
+      max-width: 600px;
+      height: 420px;
       position: relative;
-      background: var(--gris-claro);
-      border-radius: 20px;
+      background: radial-gradient(circle, rgba(30,35,42,1) 0%, rgba(11,13,15,1) 100%);
+      border-radius: 16px;
       overflow: hidden;
-      min-height: 560px;
+      margin: 10px 0 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     model-viewer {
       width: 100%;
-      height: 560px;
-      background: var(--gris-claro);
+      height: 100%;
+      --poster-color: transparent;
     }
 
+    /* Estilo del botón "Ver en mi espacio" */
     .ar-button {
-      position: absolute;
-      left: 50%;
-      bottom: 25px;
-      transform: translateX(-50%);
-
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+      color: var(--text-white);
       border: none;
       border-radius: 30px;
-
-      padding: 15px 28px;
-
-      background: var(--negro);
-      color: var(--blanco);
-
-      font-size: 1rem;
-      font-weight: bold;
-
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 4px 20px rgba(255, 42, 42, 0.5);
       cursor: pointer;
-
-      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-
-      transition: transform 0.2s ease,
-                  opacity 0.2s ease;
     }
 
-    .ar-button:hover {
-      opacity: 0.85;
-      transform: translateX(-50%) scale(1.04);
+    /* Hotspots sobre el modelo 3D */
+    .hotspot {
+      background-color: var(--accent-red);
+      border: 2px solid white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      box-shadow: 0 0 10px rgba(255, 42, 42, 0.8);
     }
 
-    /* INFORMACIÓN */
-
-    .informacion h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      margin-bottom: 8px;
+    .hotspot-annotation {
+      background: rgba(21, 24, 28, 0.9);
+      border-left: 3px solid var(--accent-red);
+      color: white;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      position: absolute;
+      top: -30px;
+      left: 20px;
+      white-space: nowrap;
+      pointer-events: none;
     }
 
-    .categoria {
-      font-size: 0.95rem;
-      color: var(--gris);
-      margin-bottom: 25px;
+    /* Secciones de Contenido */
+    .content-box {
+      width: 90%;
+      max-width: 600px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .descripcion {
-      font-size: 1.05rem;
-      margin-bottom: 25px;
+    h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 12px;
     }
 
-    .beneficios {
+    p {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    /* Lista de Características */
+    .features-list {
       list-style: none;
-      margin-bottom: 30px;
+      margin-top: 10px;
     }
 
-    .beneficios li {
+    .features-list li {
+      font-size: 13px;
       padding: 8px 0;
-      border-bottom: 1px solid #eeeeee;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
     }
 
-    .beneficios li::before {
-      content: "✓";
+    .features-list li::before {
+      content: "✔";
+      color: var(--accent-orange);
       font-weight: bold;
       margin-right: 10px;
     }
 
-    .cta {
-      display: inline-block;
-      padding: 16px 32px;
+    /* Caja de Promoción Especial */
+    .promo-box {
+      background: linear-gradient(135deg, rgba(255,42,42,0.15) 0%, rgba(255,85,0,0.1) 100%);
+      border: 1px solid var(--accent-red);
+      text-align: center;
+    }
 
-      background: var(--negro);
-      color: var(--blanco);
+    .promo-highlight {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin: 8px 0;
+    }
 
+    /* Botones de Acción (CTAs) */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
       text-decoration: none;
-      font-weight: bold;
-
-      border-radius: 30px;
-
-      transition: opacity 0.2s ease;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: transform 0.2s ease;
     }
 
-    .cta:hover {
-      opacity: 0.8;
+    .btn:active {
+      transform: scale(0.98);
     }
 
-    /* EXPERIENCIA AR */
-
-    .ar-info {
-      background: var(--negro);
-      color: var(--blanco);
-
-      border-radius: 20px;
-
-      padding: 45px 30px;
-
-      text-align: center;
-
-      margin-bottom: 50px;
+    .btn-buy {
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4);
     }
 
-    .ar-info h2 {
-      font-size: 2rem;
-      margin-bottom: 12px;
+    .btn-ws {
+      background-color: #25D366;
+      color: white;
+      margin-top: 10px;
     }
 
-    .ar-info p {
-      max-width: 650px;
-      margin: auto;
-
-      color: #cccccc;
-    }
-
-    /* QR */
-
-    .qr-section {
-      text-align: center;
-      padding: 45px 20px;
-
-      background: var(--gris-claro);
-
-      border-radius: 20px;
-
-      margin-bottom: 60px;
-    }
-
-    .qr-section h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .qr-section p {
-      color: var(--gris);
-      max-width: 650px;
-      margin: auto;
-    }
-
-    #qrCode {
-      display: flex;
-      justify-content: center;
-      margin-top: 25px;
-    }
-
-    /* FOOTER */
-
+    /* Footer & Redes */
     footer {
-      background: var(--negro);
-      color: var(--blanco);
-
       text-align: center;
-
-      padding: 30px 20px;
+      font-size: 12px;
+      color: var(--text-gray);
+      margin-top: 20px;
     }
 
-    footer p {
-      color: #aaaaaa;
-      font-size: 0.9rem;
-      margin-top: 5px;
+    .social-links {
+      margin-top: 8px;
     }
 
-    /* RESPONSIVE */
-
-    @media (max-width: 850px) {
-
-      header {
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .producto {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .visor {
-        min-height: 430px;
-      }
-
-      model-viewer {
-        height: 430px;
-      }
-
-      .informacion {
-        padding: 0 5px;
-      }
+    .social-links a {
+      color: var(--accent-orange);
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: bold;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-
+  <!-- Encabezado de Campaña -->
   <header>
-
-    <div class="logo">
-      ADIDAS TERREX
+    <div class="brand-tag">BogotaFitDeals presenta</div>
+    <div class="hero-title">
+      <div class="terrex-text">terrex</div>
+      <div class="movimiento-text">EN MOVIMIENTO</div>
     </div>
-
-    <div class="header-text">
-      Campaña: Terrex en Movimiento
-    </div>
-
   </header>
 
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <h1>Terrex en Movimiento</h1>
-
-    <p>
-      Explora el nuevo calzado outdoor en 3D y Realidad Aumentada
-    </p>
-
-  </section>
-
-
-  <main>
-
-    <!-- PRODUCTO -->
-
-    <section class="producto">
-
-      <!-- VISOR 3D -->
-
-      <div class="visor">
-
-        <model-viewer
-          src="./adidas-terrex.glb"
-          alt="Modelo 3D Adidas Terrex en Movimiento"
-
-          ar
-          ar-modes="webxr scene-viewer quick-look"
-
-          ar-placement="floor"
-
-          camera-controls
-          auto-rotate
-
-          shadow-intensity="1.2"
-          exposure="1"
-
-          touch-action="pan-y">
-
-          <button
-            class="ar-button"
-            slot="ar-button"
-            type="button">
-
-            Ver en mi espacio
-
-          </button>
-
-        </model-viewer>
-
-      </div>
-
-
-      <!-- INFORMACIÓN -->
-
-      <div class="informacion">
-
-        <h2>
-          Terrex en Movimiento
-        </h2>
-
-        <p class="categoria">
-          Colección Outdoor & Trekking
-        </p>
-
-        <p class="descripcion">
-
-          Lleva la aventura al siguiente nivel. Descubre cada ángulo, textura y detalle
-          de las Adidas Terrex mediante nuestra experiencia inmersiva e interactúa con 
-          el calzado directamente en tu entorno.
-
-        </p>
-
-
-        <ul class="beneficios">
-
-          <li>
-            Tracción y agarre superior en terrenos difíciles
-          </li>
-
-          <li>
-            Diseño ergonómico de alto rendimiento
-          </li>
-
-          <li>
-            Materiales resistentes de última tecnología
-          </li>
-
-          <li>
-            Visualización interactiva 360°
-          </li>
-
-          <li>
-            Experiencia con Realidad Aumentada (WebAR)
-          </li>
-
-        </ul>
-
-
-        <a
-          class="cta"
-          href="#experiencia">
-
-          Explorar experiencia AR
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- EXPERIENCIA AR -->
-
-    <section
-      class="ar-info"
-      id="experiencia">
-
-      <h2>
-        Llévalas a tu espacio
-      </h2>
-
-      <p>
-
-        Presiona el botón "Ver en mi espacio" en el visor interactivo desde tu smartphone
-        o tablet compatible para desplegar el modelo 3D en Realidad Aumentada.
-
-      </p>
-
-    </section>
-
-
-    <!-- QR -->
-
-    <section class="qr-section">
-
-      <h2>
-        Explora desde tu celular
-      </h2>
-
-      <p>
-
-        Escanea este código QR con la cámara de tu teléfono móvil para abrir
-        la campaña y visualizar la experiencia Terrex en Movimiento en tu entorno.
-
-      </p>
-
-      <div id="qrCode"></div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
+  <!-- Visor 3D y Experiencia WebAR -->
+  <div class="ar-container">
+    <model-viewer 
+      src="modelo.glb" 
+      alt="adidas Terrex Anylander 3D" 
+      ar 
+      ar-modes="webxr scene-viewer quick-look" 
+      camera-controls 
+      touch-action="pan-y"
+      shadow-intensity="1"
+      auto-rotate>
+
+      <!-- Botón de Realidad Aumentada -->
+      <button slot="ar-button" class="ar-button">
+        📷 Ver en mi espacio
+      </button>
+
+      <!-- Hotspots informativos -->
+      <button class="hotspot" slot="hotspot-1" data-position="0 0.1 0.2" data-normal="0 1 0">
+        <div class="hotspot-annotation">Suela Traxion</div>
+      </button>
+      <button class="hotspot" slot="hotspot-2" data-position="0.1 0 -0.1" data-normal="1 0 0">
+        <div class="hotspot-annotation">Mediasuela EVA</div>
+      </button>
+
+    </model-viewer>
+  </div>
+
+  <!-- Descripción del Producto -->
+  <div class="content-box">
+    <h2>adidas Terrex Anylander</h2>
+    <p>Diseñados para impulsarte en cada zancada. Combina la versatilidad de la ciudad con la resistencia del terreno outdoor.</p>
+    
+    <ul class="features-list">
+      <li><strong>Suela Traxion:</strong> Máximo agarre multidireccional.</li>
+      <li><strong>Mediasuela EVA:</strong> Amortiguación liviana de alto impacto.</li>
+      <li><strong>Punta Reforzada:</strong> Protección superior para el pie.</li>
+      <li><strong>Materiales Sostenibles:</strong> Confección con insumos reciclados.</li>
+    </ul>
+  </div>
+
+  <!-- Oferta y Promoción -->
+  <div class="content-box promo-box">
+    <h2>⚡ ¡Arriba el Ritmo! ⚡</h2>
+    <p>Sé el primero en cruzar la meta y estrena tus tenis al mejor precio.</p>
+    <div class="promo-highlight">20% OFF</div>
+    <p><small>Válido durante las primeras 24 horas de lanzamiento.</small></p>
+    <p style="color: var(--accent-orange); margin-top: 5px;"><strong>🚚 Envío gratis para clientes frecuentes de adidas.</strong></p>
+
+    <!-- Botón CTA de Compra (URL Afiliado Profesor) -->
+    <!-- REEMPLAZAR 'URL_DE_AFILIADO_DEL_PROFESOR' CON EL LINK REAL -->
+    <a href="URL_DE_AFILIADO_DEL_PROFESOR" target="_blank" class="btn btn-buy">
+      Comprar con 20% OFF
+    </a>
+  </div>
+
+  <!-- Atención al Cliente y Redes -->
+  <div class="content-box">
+    <h2>¿Dudas con tu talla?</h2>
+    <p>Escríbenos directamente a WhatsApp y un asesor de BogotaFitDeals te ayudará a elegir tu número ideal.</p>
+    
+    <!-- Link directo a WhatsApp -->
+    <!-- REEMPLAZAR '573000000000' CON EL NÚMERO REAL -->
+    <a href="https://wa.me/573000000000?text=Hola,%20vengo%20de%20la%20campa%C3%B1a%20Terrex%20en%20Movimiento%20y%20quiero%20consultar%20tallas." target="_blank" class="btn btn-ws">
+      Consultar por WhatsApp
+    </a>
+  </div>
 
   <footer>
-
-    <strong>
-      ADIDAS TERREX
-    </strong>
-
-    <p>
-      Campaña Terrex en Movimiento · Experiencia WebAR 3D
-    </p>
-
+    <p>© 2026 BogotaFitDeals — Campaña Académica</p>
+    <div class="social-links">
+      <a href="#">Instagram</a> | <a href="#">TikTok</a>
+    </div>
   </footer>
-
-
-  <!-- QR SCRIPT -->
-
-  <script>
-
-    new QRCode(
-      document.querySelector("#qrCode"),
-      {
-        text: window.location.href,
-        width: 180,
-        height: 180,
-        correctLevel: QRCode.CorrectLevel.H
-      }
-    );
-
-  </script>
 
 </body>
 </html>
