@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terrex en Movimiento | BogotaFitDeals</title>
 
-  <!-- Componente model-viewer de Google (Actualizado a 4.1.0 para evitar errores) -->
+  <!-- Importación del componente model-viewer (Versión Actualizada 4.1.0) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
 
-  <!-- Tipografía Montserrat -->
+  <!-- Librería para el Código QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Tipografías deportivas / urbanas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
@@ -40,11 +43,13 @@
       padding-bottom: 40px;
     }
 
+    /* Header & Logo */
     header {
       width: 100%;
       max-width: 600px;
       padding: 20px;
       text-align: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(11,13,15,0) 100%);
     }
 
     .brand-tag {
@@ -55,12 +60,17 @@
       text-transform: uppercase;
     }
 
+    .hero-title {
+      margin-top: 5px;
+    }
+
     .terrex-text {
       font-size: 42px;
       font-style: italic;
       font-weight: 900;
       color: var(--accent-red);
       line-height: 0.9;
+      text-shadow: 0 0 15px rgba(255, 42, 42, 0.4);
     }
 
     .movimiento-text {
@@ -70,24 +80,29 @@
       background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
     }
 
+    /* Contenedor del Visor 3D / AR */
     .ar-container {
       width: 100%;
       max-width: 600px;
-      height: 400px;
+      height: 420px;
       position: relative;
       background: radial-gradient(circle, rgba(30,35,42,1) 0%, rgba(11,13,15,1) 100%);
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin: 10px 0 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     model-viewer {
       width: 100%;
       height: 100%;
+      --poster-color: transparent;
     }
 
+    /* Estilo del botón "Ver en mi espacio" */
     .ar-button {
       background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
       color: var(--text-white);
@@ -101,9 +116,37 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      box-shadow: 0 4px 20px rgba(255, 42, 42, 0.5);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* Hotspots informativos sobre el modelo 3D */
+    .hotspot {
+      background-color: var(--accent-red);
+      border: 2px solid white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      box-shadow: 0 0 10px rgba(255, 42, 42, 0.8);
       cursor: pointer;
     }
 
+    .hotspot-annotation {
+      background: rgba(21, 24, 28, 0.95);
+      border-left: 3px solid var(--accent-red);
+      color: white;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      position: absolute;
+      top: -32px;
+      left: 20px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Secciones de Contenido */
     .content-box {
       width: 90%;
       max-width: 600px;
@@ -127,6 +170,59 @@
       line-height: 1.5;
     }
 
+    /* Lista de Características */
+    .features-list {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .features-list li {
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+    }
+
+    .features-list li::before {
+      content: "✔";
+      color: var(--accent-orange);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Caja Promocional */
+    .promo-box {
+      background: linear-gradient(135deg, rgba(255,42,42,0.15) 0%, rgba(255,85,0,0.1) 100%);
+      border: 1px solid var(--accent-red);
+      text-align: center;
+    }
+
+    .promo-highlight {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      margin: 8px 0;
+    }
+
+    /* Estilos del Código QR */
+    .qr-box {
+      text-align: center;
+    }
+
+    #qrCode {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      padding: 15px;
+      background: white; /* Fondo blanco obligatorio para lectura móvil */
+      border-radius: 8px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botones de Acción (CTAs) */
     .btn {
       display: block;
       width: 100%;
@@ -138,7 +234,11 @@
       text-transform: uppercase;
       font-size: 16px;
       margin-top: 12px;
-      box-sizing: border-box;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
     }
 
     .btn-360 {
@@ -151,48 +251,153 @@
     .btn-buy {
       background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
       color: white;
+      box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4);
+    }
+
+    .btn-ws {
+      background-color: #25D366;
+      color: white;
+    }
+
+    /* Footer & Redes */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-gray);
+      margin-top: 20px;
+    }
+
+    .social-links {
+      margin-top: 8px;
+    }
+
+    .social-links a {
+      color: var(--accent-orange);
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
+  <!-- Encabezado de la Campaña -->
   <header>
     <div class="brand-tag">BogotaFitDeals presenta</div>
-    <div class="terrex-text">terrex</div>
-    <div class="movimiento-text">EN MOVIMIENTO</div>
+    <div class="hero-title">
+      <div class="terrex-text">terrex</div>
+      <div class="movimiento-text">EN MOVIMIENTO</div>
+    </div>
   </header>
 
-  <!-- Visor 3D con model-viewer CORREGIDO -->
+  <!-- Visor 3D y Experiencia WebAR Organizado -->
   <div class="ar-container">
+    <!-- CORRECCIÓN: adidas-terrex.glb en lugar de modelo.glb -->
     <model-viewer 
       src="adidas-terrex.glb" 
       alt="adidas Terrex Anylander 3D" 
       ar 
       ar-modes="webxr scene-viewer quick-look" 
       camera-controls 
-      auto-rotate>
-      <button slot="ar-button" class="ar-button">📷 Ver en mi espacio</button>
+      touch-action="pan-y"
+      shadow-intensity="1.5"
+      shadow-softness="1"
+      exposure="1"
+      auto-rotate
+      rotation-per-second="30deg"
+      bounds="tight">
+
+      <!-- Botón de Realidad Aumentada -->
+      <button slot="ar-button" class="ar-button">
+        📷 Ver en mi espacio
+      </button>
+
+      <!-- Hotspots informativos en el zapato -->
+      <button class="hotspot" slot="hotspot-1" data-position="0 0.05 0.15" data-normal="0 1 0">
+        <div class="hotspot-annotation">Suela Traxion</div>
+      </button>
+      <button class="hotspot" slot="hotspot-2" data-position="0.08 0.02 -0.05" data-normal="1 0 0">
+        <div class="hotspot-annotation">Mediasuela EVA</div>
+      </button>
+
     </model-viewer>
   </div>
 
-  <!-- Sección Experiencia WebAR (Enlace a MyWebAR) -->
+  <!-- Nueva Sección: Acceso a Experiencia Web 360° -->
   <div class="content-box" style="text-align: center; border: 1px solid rgba(255, 85, 0, 0.4);">
-    <h2>🔄 Experiencia Web 360° (MyWebAR)</h2>
-    <p>Explora la experiencia inmersiva e interactiva directamente en la plataforma de MyWebAR.</p>
+    <h2>🔄 Experiencia Web 360°</h2>
+    <p>¿Quieres explorar la versión interactiva completa del producto en nuestra plataforma dedicada?</p>
     
-    <a href="https://mywebar.com/p/Project_3_h4ol7sn8jq" target="_blank" rel="noopener noreferrer" class="btn btn-360">
-      Abrir Experiencia en MyWebAR
+    <a href="https://sdfgrs-star.github.io/prueba-2/" target="_blank" rel="noopener noreferrer" class="btn btn-360">
+      Ver Experiencia 360°
     </a>
   </div>
 
-  <!-- Oferta y Botón de Compra -->
-  <div class="content-box" style="text-align: center;">
-    <h2>⚡ Oferta de Lanzamiento ⚡</h2>
-    <p>Adquiere tus tenis con un 20% OFF de descuento.</p>
+  <!-- Descripción del Producto -->
+  <div class="content-box">
+    <h2>adidas Terrex Anylander</h2>
+    <p>Diseñados para impulsarte en cada zancada. Combina la versatilidad de la ciudad con la resistencia del terreno outdoor.</p>
+    
+    <ul class="features-list">
+      <li><strong>Suela Traxion:</strong> Tracción y agarre técnico multidireccional.</li>
+      <li><strong>Mediasuela EVA:</strong> Amortiguación ligera para un avance dinámico.</li>
+      <li><strong>Punta Reforzada:</strong> Protección frontal contra impactos.</li>
+      <li><strong>Diseño Sostenible:</strong> Elaborado parcialmente con materiales reciclados.</li>
+    </ul>
+  </div>
+
+  <!-- Oferta y Promoción -->
+  <div class="content-box promo-box">
+    <h2>⚡ ¡Arriba el Ritmo! ⚡</h2>
+    <p>Sé el primero en cruzar la meta y estrena tus tenis al mejor precio.</p>
+    <div class="promo-highlight">20% OFF</div>
+    <p><small>Válido durante las primeras 24 horas de lanzamiento.</small></p>
+    <p style="color: var(--accent-orange); margin-top: 6px;"><strong>🚚 Envío gratis para clientes frecuentes de adidas.</strong></p>
+
+    <!-- Botón CTA con Redirección al Enlace de Afiliado Proporcionado -->
     <a href="https://a.co/d/09DaffkK" target="_blank" rel="noopener noreferrer" class="btn btn-buy">
-      ¡Comprar Ahora!
+      ¡Compra hoy con 20% OFF!
     </a>
   </div>
+
+  <!-- Generador QR Restaurado -->
+  <div class="content-box qr-box">
+    <h2>Explora desde tu celular</h2>
+    <p>Escanea este código para visualizar los Terrex en realidad aumentada directamente en tu entorno.</p>
+    <div id="qrCode"></div>
+  </div>
+
+  <!-- Asesoría vía WhatsApp -->
+  <div class="content-box">
+    <h2>¿Dudas con tu talla?</h2>
+    <p>Escríbenos directamente a WhatsApp y un asesor de BogotaFitDeals te ayudará a seleccionar la talla correcta.</p>
+    
+    <a href="https://wa.me/573000000000?text=Hola,%20vengo%20de%20la%20campa%C3%B1a%20Terrex%20en%20Movimiento%20y%20quiero%20consultar%20tallas." target="_blank" rel="noopener noreferrer" class="btn btn-ws">
+      Consultar por WhatsApp
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2026 BogotaFitDeals — Campaña Académica</p>
+    <div class="social-links">
+      <a href="#">Instagram</a> | <a href="#">TikTok</a>
+    </div>
+  </footer>
+
+  <!-- Script para generar el QR dinámico con la URL actual -->
+  <script>
+    new QRCode(
+      document.querySelector("#qrCode"),
+      {
+        text: window.location.href,
+        width: 160,
+        height: 160,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      }
+    );
+  </script>
 
 </body>
 </html>
