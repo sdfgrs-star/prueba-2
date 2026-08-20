@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Adidas Terrex | Terrex en Movimiento</title>
+
+  <!-- Model Viewer -->
+  <script
+    type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js">
+  </script>
+
+  <!-- QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --negro: #000000;
+      --blanco: #ffffff;
+      --gris-claro: #f5f5f5;
+      --gris: #777777;
+      --gris-oscuro: #222222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--negro);
+      background: var(--blanco);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+
+    header {
+      background: var(--negro);
+      color: var(--blanco);
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .header-text {
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px 30px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      margin-top: 12px;
+      color: var(--gris);
+      font-size: 1.1rem;
+    }
+
+    /* PRODUCTO */
+
+    main {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    .producto {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+      margin: 30px 0 70px;
+    }
+
+    /* VISOR 3D */
+
+    .visor {
+      position: relative;
+      background: var(--gris-claro);
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 560px;
+      background: var(--gris-claro);
+    }
+
+    .ar-button {
+      position: absolute;
+      left: 50%;
+      bottom: 25px;
+      transform: translateX(-50%);
+
+      border: none;
+      border-radius: 30px;
+
+      padding: 15px 28px;
+
+      background: var(--negro);
+      color: var(--blanco);
+
+      font-size: 1rem;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+
+      transition: transform 0.2s ease,
+                  opacity 0.2s ease;
+    }
+
+    .ar-button:hover {
+      opacity: 0.85;
+      transform: translateX(-50%) scale(1.04);
+    }
+
+    /* INFORMACIÓN */
+
+    .informacion h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .categoria {
+      font-size: 0.95rem;
+      color: var(--gris);
+      margin-bottom: 25px;
+    }
+
+    .descripcion {
+      font-size: 1.05rem;
+      margin-bottom: 25px;
+    }
+
+    .beneficios {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .beneficios li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .beneficios li::before {
+      content: "✓";
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 16px 32px;
+
+      background: var(--negro);
+      color: var(--blanco);
+
+      text-decoration: none;
+      font-weight: bold;
+
+      border-radius: 30px;
+
+      transition: opacity 0.2s ease;
+    }
+
+    .cta:hover {
+      opacity: 0.8;
+    }
+
+    /* EXPERIENCIA AR */
+
+    .ar-info {
+      background: var(--negro);
+      color: var(--blanco);
+
+      border-radius: 20px;
+
+      padding: 45px 30px;
+
+      text-align: center;
+
+      margin-bottom: 50px;
+    }
+
+    .ar-info h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .ar-info p {
+      max-width: 650px;
+      margin: auto;
+
+      color: #cccccc;
+    }
+
+    /* QR */
+
+    .qr-section {
+      text-align: center;
+      padding: 45px 20px;
+
+      background: var(--gris-claro);
+
+      border-radius: 20px;
+
+      margin-bottom: 60px;
+    }
+
+    .qr-section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .qr-section p {
+      color: var(--gris);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    #qrCode {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--negro);
+      color: var(--blanco);
+
+      text-align: center;
+
+      padding: 30px 20px;
+    }
+
+    footer p {
+      color: #aaaaaa;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 850px) {
+
+      header {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .producto {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .visor {
+        min-height: 430px;
+      }
+
+      model-viewer {
+        height: 430px;
+      }
+
+      .informacion {
+        padding: 0 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+      ADIDAS TERREX
+    </div>
+
+    <div class="header-text">
+      Campaña: Terrex en Movimiento
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>Terrex en Movimiento</h1>
+
+    <p>
+      Explora el nuevo calzado outdoor en 3D y Realidad Aumentada
+    </p>
+
+  </section>
+
+
+  <main>
+
+    <!-- PRODUCTO -->
+
+    <section class="producto">
+
+      <!-- VISOR 3D -->
+
+      <div class="visor">
+
+        <model-viewer
+          src="./adidas-terrex.glb"
+          alt="Modelo 3D Adidas Terrex en Movimiento"
+
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+
+          ar-placement="floor"
+
+          camera-controls
+          auto-rotate
+
+          shadow-intensity="1.2"
+          exposure="1"
+
+          touch-action="pan-y">
+
+          <button
+            class="ar-button"
+            slot="ar-button"
+            type="button">
+
+            Ver en mi espacio
+
+          </button>
+
+        </model-viewer>
+
+      </div>
+
+
+      <!-- INFORMACIÓN -->
+
+      <div class="informacion">
+
+        <h2>
+          Terrex en Movimiento
+        </h2>
+
+        <p class="categoria">
+          Colección Outdoor & Trekking
+        </p>
+
+        <p class="descripcion">
+
+          Lleva la aventura al siguiente nivel. Descubre cada ángulo, textura y detalle
+          de las Adidas Terrex mediante nuestra experiencia inmersiva e interactúa con 
+          el calzado directamente en tu entorno.
+
+        </p>
+
+
+        <ul class="beneficios">
+
+          <li>
+            Tracción y agarre superior en terrenos difíciles
+          </li>
+
+          <li>
+            Diseño ergonómico de alto rendimiento
+          </li>
+
+          <li>
+            Materiales resistentes de última tecnología
+          </li>
+
+          <li>
+            Visualización interactiva 360°
+          </li>
+
+          <li>
+            Experiencia con Realidad Aumentada (WebAR)
+          </li>
+
+        </ul>
+
+
+        <a
+          class="cta"
+          href="#experiencia">
+
+          Explorar experiencia AR
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPERIENCIA AR -->
+
+    <section
+      class="ar-info"
+      id="experiencia">
+
+      <h2>
+        Llévalas a tu espacio
+      </h2>
+
+      <p>
+
+        Presiona el botón "Ver en mi espacio" en el visor interactivo desde tu smartphone
+        o tablet compatible para desplegar el modelo 3D en Realidad Aumentada.
+
+      </p>
+
+    </section>
+
+
+    <!-- QR -->
+
+    <section class="qr-section">
+
+      <h2>
+        Explora desde tu celular
+      </h2>
+
+      <p>
+
+        Escanea este código QR con la cámara de tu teléfono móvil para abrir
+        la campaña y visualizar la experiencia Terrex en Movimiento en tu entorno.
+
+      </p>
+
+      <div id="qrCode"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <strong>
+      ADIDAS TERREX
+    </strong>
+
+    <p>
+      Campaña Terrex en Movimiento · Experiencia WebAR 3D
+    </p>
+
+  </footer>
+
+
+  <!-- QR SCRIPT -->
+
+  <script>
+
+    new QRCode(
+      document.querySelector("#qrCode"),
+      {
+        text: window.location.href,
+        width: 180,
+        height: 180,
+        correctLevel: QRCode.CorrectLevel.H
+      }
+    );
+
+  </script>
+
+</body>
+</html>
