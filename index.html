@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terrex en Movimiento | BogotaFitDeals</title>
 
-  <!-- Importación del componente model-viewer (Versión Actualizada 4.1.0) -->
+  <!-- Componente model-viewer de Google (Versión 4.1.0) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js"></script>
 
   <!-- Librería para el Código QR -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <!-- Tipografías deportivas / urbanas -->
+  <!-- Tipografía Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
@@ -43,13 +43,11 @@
       padding-bottom: 40px;
     }
 
-    /* Header & Logo */
     header {
       width: 100%;
       max-width: 600px;
       padding: 20px;
       text-align: center;
-      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(11,13,15,0) 100%);
     }
 
     .brand-tag {
@@ -60,17 +58,12 @@
       text-transform: uppercase;
     }
 
-    .hero-title {
-      margin-top: 5px;
-    }
-
     .terrex-text {
       font-size: 42px;
       font-style: italic;
       font-weight: 900;
       color: var(--accent-red);
       line-height: 0.9;
-      text-shadow: 0 0 15px rgba(255, 42, 42, 0.4);
     }
 
     .movimiento-text {
@@ -80,26 +73,22 @@
       background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
     }
 
-    /* Contenedor del Visor 3D / AR */
     .ar-container {
       width: 100%;
       max-width: 600px;
-      height: 420px;
+      height: 400px;
       position: relative;
       background: radial-gradient(circle, rgba(30,35,42,1) 0%, rgba(11,13,15,1) 100%);
       border-radius: 16px;
       overflow: hidden;
-      margin: 10px 0 20px 0;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
     }
 
     model-viewer {
       width: 100%;
       height: 100%;
-      --poster-color: transparent;
     }
 
     .ar-button {
@@ -115,9 +104,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      box-shadow: 0 4px 20px rgba(255, 42, 42, 0.5);
       cursor: pointer;
-      z-index: 10;
     }
 
     .hotspot {
@@ -144,7 +131,6 @@
       pointer-events: none;
     }
 
-    /* Secciones de Contenido */
     .content-box {
       width: 90%;
       max-width: 600px;
@@ -179,6 +165,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
+      color: var(--text-gray);
     }
 
     .features-list li::before {
@@ -188,7 +175,6 @@
       margin-right: 10px;
     }
 
-    /* Caja Promocional */
     .promo-box {
       background: linear-gradient(135deg, rgba(255,42,42,0.15) 0%, rgba(255,85,0,0.1) 100%);
       border: 1px solid var(--accent-red);
@@ -202,7 +188,6 @@
       margin: 8px 0;
     }
 
-    /* Código QR */
     .qr-box {
       text-align: center;
     }
@@ -212,14 +197,13 @@
       justify-content: center;
       margin-top: 15px;
       padding: 15px;
-      background: white; /* Fondo blanco obligatorio para que el celular lo lea bien */
+      background: white;
       border-radius: 8px;
       width: fit-content;
       margin-left: auto;
       margin-right: auto;
     }
 
-    /* Botones de Acción (CTAs) */
     .btn {
       display: block;
       width: 100%;
@@ -231,7 +215,14 @@
       text-transform: uppercase;
       font-size: 16px;
       margin-top: 12px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .btn-360 {
+      background: linear-gradient(90deg, #1e252a, #2a323d);
+      color: #fff;
+      border: 1px solid var(--accent-orange);
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.2);
     }
 
     .btn-buy {
@@ -245,7 +236,6 @@
       color: white;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       font-size: 12px;
@@ -256,35 +246,24 @@
 </head>
 <body>
 
-  <!-- Encabezado -->
   <header>
     <div class="brand-tag">BogotaFitDeals presenta</div>
-    <div class="hero-title">
-      <div class="terrex-text">terrex</div>
-      <div class="movimiento-text">EN MOVIMIENTO</div>
-    </div>
+    <div class="terrex-text">terrex</div>
+    <div class="movimiento-text">EN MOVIMIENTO</div>
   </header>
 
   <!-- Visor 3D -->
   <div class="ar-container">
     <model-viewer 
       src="adidas-terrex.glb" 
-      alt="adidas Terrex 3D" 
+      alt="adidas Terrex Anylander 3D" 
       ar 
       ar-modes="webxr scene-viewer quick-look" 
       camera-controls 
-      touch-action="pan-y"
-      shadow-intensity="1.5"
-      shadow-softness="1"
-      exposure="1"
       auto-rotate
-      rotation-per-second="30deg"
-      bounds="tight">
-
-      <!-- Botón AR -->
-      <button slot="ar-button" class="ar-button">
-        📷 Ver en mi espacio
-      </button>
+      shadow-intensity="1.5"
+      exposure="1">
+      <button slot="ar-button" class="ar-button">📷 Ver en mi espacio</button>
 
       <!-- Hotspots -->
       <button class="hotspot" slot="hotspot-1" data-position="0 0.05 0.15" data-normal="0 1 0">
@@ -296,19 +275,30 @@
     </model-viewer>
   </div>
 
-  <!-- Descripción -->
+  <!-- Experiencia Web 360° (MyWebAR) -->
+  <div class="content-box" style="text-align: center; border: 1px solid rgba(255, 85, 0, 0.4);">
+    <h2>🔄 Experiencia Web 360° (MyWebAR)</h2>
+    <p>Explora la experiencia inmersiva e interactiva directamente en la plataforma de MyWebAR.</p>
+    
+    <a href="https://mywebar.com/p/Project_3_h4ol7sn8jq" target="_blank" rel="noopener noreferrer" class="btn btn-360">
+      Abrir Experiencia en MyWebAR
+    </a>
+  </div>
+
+  <!-- Descripción del Producto -->
   <div class="content-box">
-    <h2>adidas Terrex</h2>
+    <h2>adidas Terrex Anylander</h2>
     <p>Diseñados para impulsarte en cada zancada. Combina la versatilidad de la ciudad con la resistencia del terreno outdoor.</p>
     
     <ul class="features-list">
       <li><strong>Suela Traxion:</strong> Tracción y agarre técnico multidireccional.</li>
       <li><strong>Mediasuela EVA:</strong> Amortiguación ligera para un avance dinámico.</li>
-      <li><strong>Diseño Interactivo:</strong> Visualización 3D y Realidad Aumentada.</li>
+      <li><strong>Punta Reforzada:</strong> Protección frontal contra impactos.</li>
+      <li><strong>Diseño Sostenible:</strong> Elaborado parcialmente con materiales reciclados.</li>
     </ul>
   </div>
 
-  <!-- Oferta -->
+  <!-- Oferta y Promoción -->
   <div class="content-box promo-box">
     <h2>⚡ ¡Arriba el Ritmo! ⚡</h2>
     <p>Sé el primero en cruzar la meta y estrena tus tenis al mejor precio.</p>
@@ -319,7 +309,7 @@
     </a>
   </div>
 
-  <!-- Generador QR -->
+  <!-- Código QR -->
   <div class="content-box qr-box">
     <h2>Explora desde tu celular</h2>
     <p>Escanea este código para visualizar los Terrex en realidad aumentada directamente en tu entorno.</p>
@@ -339,7 +329,7 @@
     <p>© 2026 BogotaFitDeals — Campaña Académica</p>
   </footer>
 
-  <!-- Script para generar el QR dinámico con la URL actual -->
+  <!-- Script para generar el QR dinámico -->
   <script>
     new QRCode(
       document.querySelector("#qrCode"),
