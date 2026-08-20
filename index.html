@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terrex en Movimiento | BogotaFitDeals</title>
 
-  <!-- Importación del componente model-viewer de Google -->
+  <!-- Importación del componente model-viewer de Google (WebAR) -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-  <!-- Fuentes tipográficas deportivas/urbanas -->
+  <!-- Tipografías deportivas / urbanas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
     }
 
     .brand-tag {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 2px;
       color: var(--text-gray);
@@ -115,27 +115,29 @@
       transform: translateX(-50%);
       box-shadow: 0 4px 20px rgba(255, 42, 42, 0.5);
       cursor: pointer;
+      z-index: 10;
     }
 
-    /* Hotspots sobre el modelo 3D */
+    /* Hotspots informativos sobre el modelo 3D */
     .hotspot {
       background-color: var(--accent-red);
       border: 2px solid white;
       border-radius: 50%;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       box-shadow: 0 0 10px rgba(255, 42, 42, 0.8);
+      cursor: pointer;
     }
 
     .hotspot-annotation {
-      background: rgba(21, 24, 28, 0.9);
+      background: rgba(21, 24, 28, 0.95);
       border-left: 3px solid var(--accent-red);
       color: white;
       font-size: 11px;
       padding: 6px 10px;
       border-radius: 4px;
       position: absolute;
-      top: -30px;
+      top: -32px;
       left: 20px;
       white-space: nowrap;
       pointer-events: none;
@@ -186,7 +188,7 @@
       margin-right: 10px;
     }
 
-    /* Caja de Promoción Especial */
+    /* Caja Promocional */
     .promo-box {
       background: linear-gradient(135deg, rgba(255,42,42,0.15) 0%, rgba(255,85,0,0.1) 100%);
       border: 1px solid var(--accent-red);
@@ -194,7 +196,7 @@
     }
 
     .promo-highlight {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 900;
       color: #fff;
       margin: 8px 0;
@@ -211,8 +213,8 @@
       font-weight: 900;
       text-transform: uppercase;
       font-size: 16px;
-      margin-top: 10px;
-      transition: transform 0.2s ease;
+      margin-top: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn:active {
@@ -228,7 +230,6 @@
     .btn-ws {
       background-color: #25D366;
       color: white;
-      margin-top: 10px;
     }
 
     /* Footer & Redes */
@@ -253,7 +254,7 @@
 </head>
 <body>
 
-  <!-- Encabezado de Campaña -->
+  <!-- Encabezado de la Campaña -->
   <header>
     <div class="brand-tag">BogotaFitDeals presenta</div>
     <div class="hero-title">
@@ -262,7 +263,7 @@
     </div>
   </header>
 
-  <!-- Visor 3D y Experiencia WebAR -->
+  <!-- Visor 3D y Experiencia WebAR Organizado -->
   <div class="ar-container">
     <model-viewer 
       src="modelo.glb" 
@@ -271,19 +272,23 @@
       ar-modes="webxr scene-viewer quick-look" 
       camera-controls 
       touch-action="pan-y"
-      shadow-intensity="1"
-      auto-rotate>
+      shadow-intensity="1.5"
+      shadow-softness="1"
+      exposure="1"
+      auto-rotate
+      rotation-per-second="30deg"
+      bounds="tight">
 
       <!-- Botón de Realidad Aumentada -->
       <button slot="ar-button" class="ar-button">
         📷 Ver en mi espacio
       </button>
 
-      <!-- Hotspots informativos -->
-      <button class="hotspot" slot="hotspot-1" data-position="0 0.1 0.2" data-normal="0 1 0">
+      <!-- Hotspots informativos en el zapato -->
+      <button class="hotspot" slot="hotspot-1" data-position="0 0.05 0.15" data-normal="0 1 0">
         <div class="hotspot-annotation">Suela Traxion</div>
       </button>
-      <button class="hotspot" slot="hotspot-2" data-position="0.1 0 -0.1" data-normal="1 0 0">
+      <button class="hotspot" slot="hotspot-2" data-position="0.08 0.02 -0.05" data-normal="1 0 0">
         <div class="hotspot-annotation">Mediasuela EVA</div>
       </button>
 
@@ -296,10 +301,10 @@
     <p>Diseñados para impulsarte en cada zancada. Combina la versatilidad de la ciudad con la resistencia del terreno outdoor.</p>
     
     <ul class="features-list">
-      <li><strong>Suela Traxion:</strong> Máximo agarre multidireccional.</li>
-      <li><strong>Mediasuela EVA:</strong> Amortiguación liviana de alto impacto.</li>
-      <li><strong>Punta Reforzada:</strong> Protección superior para el pie.</li>
-      <li><strong>Materiales Sostenibles:</strong> Confección con insumos reciclados.</li>
+      <li><strong>Suela Traxion:</strong> Tracción y agarre técnico multidireccional.</li>
+      <li><strong>Mediasuela EVA:</strong> Amortiguación ligera para un avance dinámico.</li>
+      <li><strong>Punta Reforzada:</strong> Protección frontal contra impactos.</li>
+      <li><strong>Diseño Sostenible:</strong> Elaborado parcialmente con materiales reciclados.</li>
     </ul>
   </div>
 
@@ -309,23 +314,20 @@
     <p>Sé el primero en cruzar la meta y estrena tus tenis al mejor precio.</p>
     <div class="promo-highlight">20% OFF</div>
     <p><small>Válido durante las primeras 24 horas de lanzamiento.</small></p>
-    <p style="color: var(--accent-orange); margin-top: 5px;"><strong>🚚 Envío gratis para clientes frecuentes de adidas.</strong></p>
+    <p style="color: var(--accent-orange); margin-top: 6px;"><strong>🚚 Envío gratis para clientes frecuentes de adidas.</strong></p>
 
-    <!-- Botón CTA de Compra (URL Afiliado Profesor) -->
-    <!-- REEMPLAZAR 'URL_DE_AFILIADO_DEL_PROFESOR' CON EL LINK REAL -->
-    <a href="URL_DE_AFILIADO_DEL_PROFESOR" target="_blank" class="btn btn-buy">
-      Comprar con 20% OFF
+    <!-- Botón CTA con Redirección al Enlace de Afiliado Proporcionado -->
+    <a href="https://a.co/d/09DaffkK" target="_blank" rel="noopener noreferrer" class="btn btn-buy">
+      ¡Compra hoy con 20% OFF!
     </a>
   </div>
 
-  <!-- Atención al Cliente y Redes -->
+  <!-- Asesoría vía WhatsApp -->
   <div class="content-box">
     <h2>¿Dudas con tu talla?</h2>
-    <p>Escríbenos directamente a WhatsApp y un asesor de BogotaFitDeals te ayudará a elegir tu número ideal.</p>
+    <p>Escríbenos directamente a WhatsApp y un asesor de BogotaFitDeals te ayudará a seleccionar la talla correcta.</p>
     
-    <!-- Link directo a WhatsApp -->
-    <!-- REEMPLAZAR '573000000000' CON EL NÚMERO REAL -->
-    <a href="https://wa.me/573000000000?text=Hola,%20vengo%20de%20la%20campa%C3%B1a%20Terrex%20en%20Movimiento%20y%20quiero%20consultar%20tallas." target="_blank" class="btn btn-ws">
+    <a href="https://wa.me/573000000000?text=Hola,%20vengo%20de%20la%20campa%C3%B1a%20Terrex%20en%20Movimiento%20y%20quiero%20consultar%20tallas." target="_blank" rel="noopener noreferrer" class="btn btn-ws">
       Consultar por WhatsApp
     </a>
   </div>
